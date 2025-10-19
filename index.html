@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Bonita</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="icon.png">
+
+</head>
+<body>
+  <header>
+    <div class="logo">🍕Pizza Bonita</div>
+    <nav>
+      <ul>
+        <li><a href="#pizza">Pizza</a></li>
+        <li><a href="#desert">Desert</a></li>
+        <li><a href="#bauturi">Băuturi</a></li>
+      </ul>
+    </nav>
+     <a href="cos.html" class="cart-button">🛒 Coșul meu</a>
+    </header>
+
+  <section class="hero">
+    <h1>Bine ai venit la Pizza Bonita!</h1>
+    <p>Comandă online mâncărurile tale preferate, rapid și simplu.</p>
+  </section>
+
+  <main>
+    <!-- Pizza -->
+    <section id="pizza" class="menu-category">
+      <h2>🍕 Pizza</h2>
+
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="Margherita.webp" alt="Pizza Margherita">
+          <h3>Pizza Margherita</h3>
+          <p>Mozzarella, sos de roșii, busuioc</p>
+          <span class="price">25 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+
+        <div class="menu-item">
+          <img src="Quatro.webp" alt="Pizza Quattro Stagioni">
+          <h3>Pizza Quattro Stagioni</h3>
+          <p>Șuncă, ciuperci, măsline, mozzarella</p>
+          <span class="price">32 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+
+        <div class="menu-item">
+          <img src="capriciosa.jpg" alt="Pizza Capricciosa">
+          <h3>Pizza Capricciosa</h3>
+          <p>Șuncă, ciuperci, măsline, mozzarella, sos de roșii</p>
+          <span class="price">25 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Desert -->
+    <section id="desert" class="menu-category">
+      <h2>🍰 Desert</h2>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="tiramisu.jpg" alt="Tiramisu">
+          <h3>Tiramisu</h3>
+          <p>Rețetă italiană autentică</p>
+          <span class="price">18 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+
+        <div class="menu-item">
+          <img src="clatite.jpg" alt="Clătite cu ciocolată">
+          <h3>Clătite cu ciocolată</h3>
+          <p>Ciocolată, frișcă, topping de vanilie</p>
+          <span class="price">15 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bauturi -->
+    <section id="bauturi" class="menu-category">
+      <h2>🥤 Băuturi</h2>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="cola.jpg" alt="Coca-Cola">
+          <h3>Coca-Cola 0.5L</h3>
+          <span class="price">7 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+
+        <div class="menu-item">
+          <img src="dorna.jpg" alt="Apă plată">
+          <h3>Apă plată 0.5L</h3>
+          <span class="price">5 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+
+        <div class="menu-item">
+          <img src="dorna1.jpg" alt="Apă minerala">
+          <h3>Apă plată 0.5L</h3>
+          <span class="price">5 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+
+        <div class="menu-item">
+          <img src="sprite.jpg" alt="Sprite">
+          <h3>Apă plată 0.5L</h3>
+          <span class="price">7 lei</span>
+          <button>Adaugă în coș</button>
+        </div>
+
+
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pizza Bonita. Toate drepturile rezervate.</p>
+  </footer>
+
+  <script>
+  // Pornim coșul (gol)
+  let cos = JSON.parse(localStorage.getItem('cos')) || [];
+
+  // Selectăm toate butoanele "Adaugă în coș"
+  const butoane = document.querySelectorAll('button');
+
+  butoane.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const produs = btn.parentElement;
+      const nume = produs.querySelector('h3').innerText;
+      const pret = produs.querySelector('.price').innerText;
+      const imagine = produs.querySelector('img').src;
+
+      // Adaugăm produsul în coș
+      cos.push({ nume, pret, imagine });
+      localStorage.setItem('cos', JSON.stringify(cos));
+
+      alert(`${nume} a fost adăugat în coș!`);
+    });
+  });
+</script>
+
+</body>
+</html>
 
