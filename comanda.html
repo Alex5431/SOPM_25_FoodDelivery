@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizare comandă</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="icon.png">
+</head>
+<body>
+  <header>
+    <div class="logo">🍕Pizza Bonita</div>
+    <a href="index.html" class="cart-button">Meniu</a>
+  </header>
+
+  <main class="menu-category">
+    <h2>📦 Detalii livrare</h2>
+    <form id="formular">
+      <label>Nume complet:</label>
+      <input type="text" required><br><br>
+
+      <label>Adresă livrare:</label>
+      <input type="text" required><br><br>
+
+      <label>Telefon:</label>
+      <input type="tel" required><br><br>
+
+      <label>Metodă de plată:</label><br>
+      <input type="radio" name="plata" value="cash" checked> Cash la livrare<br>
+      <input type="radio" name="plata" value="card" disabled> Card (momentan indisponibil)<br><br>
+
+      <button type="submit">Trimite comanda</button>
+    </form>
+
+    <p id="confirmare"></p>
+  </main>
+
+  <script>
+    const form = document.getElementById('formular');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('cos'); // golim coșul după comandă
+      document.getElementById('confirmare').textContent =
+        "Comanda ta a fost trimisă! Iti mulțumim 🍕";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
 
