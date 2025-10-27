@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Bonita</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="icon.png">
+  
+  <!-- Script Google Maps (în <head> e ok, async se ocupă de încărcare) -->
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzj0sWXSidlDyybhrw4bhAzqXLnHCsSYo&callback=initMap">
+  </script>
+
+  <script>
+    function initMap() {
+      const locatie = { lat: 45.643071387450256, lng:25.590968323703468 }; 
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: locatie,
+      });
+      const marker = new google.maps.Marker({
+        position: locatie,
+        map: map,
+        title: "Pizza Bonita - Str. Republicii 15, Brașov",
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="logo">🍕Pizza Bonita</div>
+    <a href="index.html" class="cart-button">Meniu</a>
+  </header>
+
+  <main class="contact-info">
+    <h2>Contact Pizza Bonita</h2>
+    <p><strong>Adresa:</strong> Str. Republicii nr. 15, Brașov</p>
+    <p><strong>Telefon:</strong> 0712 345 678</p>
+    <p><strong>Email:</strong> contact@pizzabonita.ro</p>
+    <p><strong>Program:</strong> Luni - Duminică, 10:00 - 23:00</p>
+    <p><strong>Harta:</strong></p>
+
+    <!-- Aici se desenează harta -->
+    <div id="map" class="harta"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pizza Bonita - Toate drepturile rezervate.</p>
+  </footer>
+</body>
+</html>
 
