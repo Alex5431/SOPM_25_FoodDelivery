@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coșul de cumpărături</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="icon.png">
+</head>
+<body>
+  <header>
+    <div class="logo">🍕Pizza Bonita</div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="cart-button">Meniu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="menu-category">
+    <h2>🛒 Coșul tău</h2>
+    <div id="cosul-tau" class="menu-items"></div>
+    <h3 id="total"></h3>
+    <button id="finalizeaza">Finalizează comanda</button>
+  </main>
+
+  <script>
+    const cosContainer = document.getElementById('cosul-tau');
+    const totalElem = document.getElementById('total');
+    let cos = JSON.parse(localStorage.getItem('cos')) || [];
+
+    function actualizeazaCos() {
+      cosContainer.innerHTML = "";
+      if (cos.length === 0) {
+        cosContainer.innerHTML = "<p>Coșul tău este gol.</p>";
+        totalElem.textContent = "";
+        document.getElementById('finalizeaza').style.display = "none";
+        return;
+      }
+
+      let total = 0;
+      cos.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.classList.add('menu-item');
+        card.innerHTML = `
+          <img src="${item.imagine}">
+          <h3>${item.nume}</h3>
+          <span class="price">${item.pret}</span>
+          <button class="sterge" data-index="${index}">Sterge</button>
+        `;
+        cosContainer.appendChild(card);
+        total += parseFloat(item.pret.replace(' lei',''));
+      });
+      totalElem.textContent = `Total: ${total} lei`;
+
+      // Adaugam evenimentele pentru butoanele de stergere
+      document.querySelectorAll('.sterge').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const index = e.target.getAttribute('data-index');
+          stergeProdus(index);
+        });
+      });
+    }
+
+    function stergeProdus(index) {
+      cos.splice(index, 1);
+      localStorage.setItem('cos', JSON.stringify(cos)); //  actualizeaza localStorage
+      actualizeazaCos();
+    }
+
+    document.getElementById('finalizeaza').addEventListener('click', () => {
+      window.location.href = "comanda.html";
+    });
+
+    // La încărcare
+    actualizeazaCos();
+  </script>
+</body>
+</html>
+
 
